@@ -31,7 +31,7 @@ class DEBLUR(object):
         self.data_list = open(args.datalist, 'rt').read().splitlines()
         self.data_list = list(map(lambda x: x.split(' '), self.data_list))
         random.shuffle(self.data_list)
-        self.train_dir = os.path.join('C:\\Users\\IMS\\Desktop\\SRN_deblur\\SRN_finish\\checkpoints', args.model)
+        self.train_dir = os.path.join('./checkpoints', args.model)
         if not os.path.exists(self.train_dir):
             os.makedirs(self.train_dir)
 
@@ -47,8 +47,8 @@ class DEBLUR(object):
     def input_producer(self, batch_size=10):
         def read_data():
             ##tf.image.decode_image 改成 tf.image.decode_png
-            img_a = tf.image.decode_image(tf.read_file(tf.string_join(['C:\\Users\\IMS\\Desktop\\SRN_deblur\\SRN_finish\\training_set', self.data_queue[0]])),channels=3)
-            img_b = tf.image.decode_image(tf.read_file(tf.string_join(['C:\\Users\\IMS\\Desktop\\SRN_deblur\\SRN_finish\\training_set', self.data_queue[1]])),channels=3)
+            img_a = tf.image.decode_image(tf.read_file(tf.string_join(['./training_set', self.data_queue[0]])),channels=3)
+            img_b = tf.image.decode_image(tf.read_file(tf.string_join(['./training_set', self.data_queue[1]])),channels=3)
 
             img_a, img_b = preprocessing([img_a, img_b])
             return img_a, img_b
@@ -341,7 +341,5 @@ class DEBLUR(object):
 
         #scipy.misc.imsave(os.path.join(output_path, imgName), res) #file
         img = array_to_img(res)
-        #img.save('C:\\Users\\IMS\\Desktop\\work\\Deblur_api\\output\\2.png')
-        #img = scipy.misc.imsave('C:\\Users\\IMS\\Desktop\\work\\colornet-template\\output\\1.png', img)
 
         return img

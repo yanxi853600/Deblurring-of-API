@@ -20,7 +20,7 @@ app = Flask(__name__)
 def parse_args():
     parser = argparse.ArgumentParser(description='deblur arguments')
     parser.add_argument('--phase', type=str, default='test', help='determine whether train or test')
-    parser.add_argument('--datalist', type=str, default='C:\\Users\\IMS\\Desktop\\work\\Deblur_api\\SRN_finish\\datalist_gopro.txt', help='training datalist')
+    parser.add_argument('--datalist', type=str, default='./datalist_gopro.txt', help='training datalist')
     parser.add_argument('--model', type=str, default='color', help='model type: [lstm | gray | color]')
     parser.add_argument('--batch_size', help='training batch size', type=int, default=16)
     parser.add_argument('--epoch', help='training epoch number', type=int, default=5)
@@ -31,12 +31,12 @@ def parse_args():
     parser.add_argument('--width', type=int, default=256,
                         help='width for the tensorflow placeholder, should be multiple of 16 for 3 scales')
     ## Input file
-    parser.add_argument('--input_path', type=str, default='C:\\Users\\IMS\\Desktop\\work\\Deblur_api\\SRN_finish\\input\\',
+    parser.add_argument('--input_path', type=str, default='./input',
                         help='input path for testing images')
     ## Output file
-    parser.add_argument('--output_path', type=str, default='C:\\Users\\IMS\\Desktop\\work\\Deblur_api\\SRN_finish\\output\\',
+    parser.add_argument('--output_path', type=str, default='./output',
                         help='output path for testing images')
-    parser.add_argument('--img_dir', type=str, default='C:\\Users\\IMS\\Desktop\\work\\Deblur_api\\SRN_finish\\input\\',
+    parser.add_argument('--img_dir', type=str, default='./input',
                         help='input path for testing images')
     args = parser.parse_args()
     return args
